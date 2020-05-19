@@ -43,44 +43,57 @@
 
 
     <section>
-        <article><p>This project was bootstrapped with <a href="https://github.com/facebook/create-react-app">Create React App</a>.</p>
-<h2>Available Scripts</h2>
-<p>In the project directory, you can run:</p>
-<h3><code>npm start</code></h3>
-<p>Runs the app in the development mode.<br />
-Open <a href="http://localhost:3000">http://localhost:3000</a> to view it in the browser.</p>
-<p>The page will reload if you make edits.<br />
-You will also see any lint errors in the console.</p>
-<h3><code>npm test</code></h3>
-<p>Launches the test runner in the interactive watch mode.<br />
-See the section about <a href="https://facebook.github.io/create-react-app/docs/running-tests">running tests</a> for more information.</p>
-<h3><code>npm run build</code></h3>
-<p>Builds the app for production to the <code>build</code> folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.</p>
-<p>The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!</p>
-<p>See the section about <a href="https://facebook.github.io/create-react-app/docs/deployment">deployment</a> for more information.</p>
-<h3><code>npm run eject</code></h3>
-<p><strong>Note: this is a one-way operation. Once you <code>eject</code>, you can’t go back!</strong></p>
-<p>If you aren’t satisfied with the build tool and configuration choices, you can <code>eject</code> at any time. This command will remove the single build dependency from your project.</p>
-<p>Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except <code>eject</code> will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.</p>
-<p>You don’t have to ever use <code>eject</code>. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.</p>
-<h2>Learn More</h2>
-<p>You can learn more in the <a href="https://facebook.github.io/create-react-app/docs/getting-started">Create React App documentation</a>.</p>
-<p>To learn React, check out the <a href="https://reactjs.org/">React documentation</a>.</p>
-<h3>Code Splitting</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting</p>
-<h3>Analyzing the Bundle Size</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size</p>
-<h3>Making a Progressive Web App</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app</p>
-<h3>Advanced Configuration</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration</p>
-<h3>Deployment</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/deployment</p>
-<h3><code>npm run build</code> fails to minify</h3>
-<p>This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
-&quot;# react-client&quot;</p></article>
+        <article><h1>React Client</h1>
+<h2>Installasjon</h2>
+<h3>Installer git</h3>
+<p>legg inn git fra: https://git-scm.com/download</p>
+<h3>Installer Node</h3>
+<p>Legg inn node fra: https://nodejs.org/en/ - applikasjonen er utviklet og testet i versjon 14.1.0</p>
+<h3>Klon Repo og installer</h3>
+<pre class="prettyprint source"><code>git clone https://github.com/arnstadm/react-client.git
+cd react-client
+npm install
+</code></pre>
+<h3>Tilgjengelige scripts</h3>
+<pre class="prettyprint source"><code>npm run start - starter en bygget versjon av applikasjonen
+npm run build - bygger applikasjonen
+npm run eject - kapsulerer alle npm moduler
+npm run dev - starter utviklingsmiljøet
+npm run docs - generere dokumentasjon
+</code></pre>
+<h3>Dependencies</h3>
+<pre class="prettyprint source lang-json"><code>&quot;dependencies&quot;: {
+    &quot;@babel/core&quot;: &quot;^7.9.6&quot;,
+    &quot;@babel/preset-env&quot;: &quot;^7.9.6&quot;,
+    &quot;@babel/runtime&quot;: &quot;^7.9.6&quot;,
+    &quot;@fortawesome/fontawesome-svg-core&quot;: &quot;^1.2.28&quot;,
+    &quot;@fortawesome/free-brands-svg-icons&quot;: &quot;^5.13.0&quot;,
+    &quot;@fortawesome/free-regular-svg-icons&quot;: &quot;^5.13.0&quot;,
+    &quot;@fortawesome/free-solid-svg-icons&quot;: &quot;^5.13.0&quot;,
+    &quot;@fortawesome/react-fontawesome&quot;: &quot;^0.1.9&quot;,
+    &quot;@testing-library/react-hooks&quot;: &quot;^3.2.1&quot;,
+    &quot;babel-plugin-transform-export-extensions&quot;: &quot;^6.22.0&quot;,
+    &quot;blueimp-load-image&quot;: &quot;^5.12.0&quot;,
+    &quot;bootstrap&quot;: &quot;^4.5.0&quot;,
+    &quot;express&quot;: &quot;^4.17.1&quot;,
+    &quot;express-favicon&quot;: &quot;^2.0.1&quot;,
+    &quot;jwt-decode&quot;: &quot;^2.2.0&quot;,
+    &quot;node-fetch&quot;: &quot;^2.6.0&quot;,
+    &quot;path&quot;: &quot;^0.12.7&quot;,
+    &quot;react&quot;: &quot;^16.13.1&quot;,
+    &quot;react-dom&quot;: &quot;^16.13.1&quot;,
+    &quot;react-router-dom&quot;: &quot;^5.2.0&quot;,
+    &quot;react-scripts&quot;: &quot;^3.4.0&quot;,
+    &quot;reactstrap&quot;: &quot;^8.4.1&quot;,
+    &quot;regenerator-runtime&quot;: &quot;^0.13.5&quot;
+  }
+</code></pre>
+<pre class="prettyprint source lang-json"><code>  &quot;devDependencies&quot;: {
+    &quot;@babel/plugin-transform-runtime&quot;: &quot;^7.9.6&quot;,
+    &quot;better-docs&quot;: &quot;^2.0.1&quot;,
+    &quot;jsdoc&quot;: &quot;^3.6.4&quot;
+  }
+</code></pre></article>
     </section>
 
 
@@ -91,13 +104,13 @@ Your app is ready to be deployed!</p>
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddRemove.html">AddRemove</a></li><li><a href="BackButton.html">BackButton</a></li><li><a href="ChangePassword.html">ChangePassword</a></li><li><a href="DetectedImage.html">DetectedImage</a></li><li><a href="Edit.html">Edit</a></li><li><a href="EditItem.html">EditItem</a></li><li><a href="EditItemType.html">EditItemType</a></li><li><a href="EditProject.html">EditProject</a></li><li><a href="EditUser.html">EditUser</a></li><li><a href="Home.html">Home</a></li><li><a href="ImageUpload.html">ImageUpload</a></li><li><a href="InputDetections.html">InputDetections</a></li><li><a href="ItemList.html">ItemList</a></li><li><a href="ItemTypeList.html">ItemTypeList</a></li><li><a href="ItemTypesDropdown.html">ItemTypesDropdown</a></li><li><a href="List.html">List</a></li><li><a href="Loading.html">Loading</a></li><li><a href="Login.html">Login</a></li><li><a href="LoginForm.html">LoginForm</a></li><li><a href="ModalComponent.html">ModalComponent</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProjectList.html">ProjectList</a></li><li><a href="Register.html">Register</a></li><li><a href="RegisterItem.html">RegisterItem</a></li><li><a href="RegisterItemType.html">RegisterItemType</a></li><li><a href="RegisterProject.html">RegisterProject</a></li><li><a href="RegisterUser.html">RegisterUser</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="TransactionList.html">TransactionList</a></li><li><a href="Transactions.html">Transactions</a></li><li><a href="useInput.html">useInput</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserProfile.html">UserProfile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AuthedRouter">AuthedRouter</a></li><li><a href="global.html#chooseEntity">chooseEntity</a></li><li><a href="global.html#getItemTypesName">getItemTypesName</a></li><li><a href="global.html#UnauthRouter">UnauthRouter</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddRemove.html">AddRemove</a></li><li><a href="BackButton.html">BackButton</a></li><li><a href="ChangePassword.html">ChangePassword</a></li><li><a href="DetectedImage.html">DetectedImage</a></li><li><a href="Edit.html">Edit</a></li><li><a href="EditItem.html">EditItem</a></li><li><a href="EditItemType.html">EditItemType</a></li><li><a href="EditProject.html">EditProject</a></li><li><a href="EditUser.html">EditUser</a></li><li><a href="Home.html">Home</a></li><li><a href="ImageUpload.html">ImageUpload</a></li><li><a href="InputDetections.html">InputDetections</a></li><li><a href="ItemList.html">ItemList</a></li><li><a href="ItemTypeList.html">ItemTypeList</a></li><li><a href="ItemTypesDropdown.html">ItemTypesDropdown</a></li><li><a href="List.html">List</a></li><li><a href="Loading.html">Loading</a></li><li><a href="Login.html">Login</a></li><li><a href="LoginForm.html">LoginForm</a></li><li><a href="ModalComponent.html">ModalComponent</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProjectList.html">ProjectList</a></li><li><a href="Register.html">Register</a></li><li><a href="RegisterItem.html">RegisterItem</a></li><li><a href="RegisterItemType.html">RegisterItemType</a></li><li><a href="RegisterProject.html">RegisterProject</a></li><li><a href="RegisterUser.html">RegisterUser</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="TransactionList.html">TransactionList</a></li><li><a href="Transactions.html">Transactions</a></li><li><a href="useInput.html">useInput</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserProfile.html">UserProfile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#apiCall">apiCall</a></li><li><a href="global.html#AuthedRouter">AuthedRouter</a></li><li><a href="global.html#chooseEntity">chooseEntity</a></li><li><a href="global.html#getItemTypesName">getItemTypesName</a></li><li><a href="global.html#UnauthRouter">UnauthRouter</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue May 19 2020 19:05:09 GMT+0200 (GMT+02:00)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue May 19 2020 21:14:32 GMT+0200 (GMT+02:00)
 </footer>
 
 <script> prettyPrint(); </script>

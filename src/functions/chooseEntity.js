@@ -1,7 +1,5 @@
 /**
- * Switch-funksjon som tar inn et typenavn i string-format.
- * Dersom typenavnet eksisterer i listen returneres dette i korrekt format.
- * Dersom typenavnet ikke eksisterer returneres null.
+ * Switch function for selecting an entity that corresponds with the endpoint name
  */
 const chooseEntity = (type) => {
   switch (type) {

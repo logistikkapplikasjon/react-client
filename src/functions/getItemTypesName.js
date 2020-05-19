@@ -1,7 +1,7 @@
 import apiCall from './apiCall';
 
 /**
- * Asynkron fetch-funksjon som henter varetyper fra APIet
+ * Asynchronous function for fetching itemtypes from the API
  */
 
 const getItemTypesName = async () => {
