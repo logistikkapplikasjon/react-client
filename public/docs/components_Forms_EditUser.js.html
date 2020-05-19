@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Forms/EditUser.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Forms/EditUser.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+
+import { Container, FormGroup, Button, Form, Label, Input } from 'reactstrap';
+
+import Alert from '../Alert';
+import BackButton from '../BackButton';
+
+/**
+ * Component for showing a form for editing users.
+ * @component
+ * @param {props} props props passed from container
+ */
+const EditUser = (props) => {
+  const {
+    user_id,
+    first_name,
+    last_name,
+    email,
+    user_level,
+    phone_number,
+    password,
+  } = props.inputs || {};
+
+  const { onSubmit, handleChange, result } = props;
+
+  return (
+    &lt;Container>
+      &lt;h3>Endring for bruker {user_id}&lt;/h3>
+      &lt;Form onSubmit={onSubmit}>
+        &lt;FormGroup>
+          &lt;Label>Fornavn&lt;/Label>
+          &lt;Input
+            name='first_name'
+            type='text'
+            defaultValue={first_name}
+            onChange={handleChange}
+          />
+        &lt;/FormGroup>
+        &lt;FormGroup>
+          &lt;Label>Etternavn&lt;/Label>
+          &lt;Input
+            name='last_name'
+            type='text'
+            defaultValue={last_name}
+            onChange={handleChange}
+          />
+        &lt;/FormGroup>
+        &lt;FormGroup>
+          &lt;Label>E-postadresse&lt;/Label>
+          &lt;Input
+            name='email'
+            type='email'
+            defaultValue={email}
+            onChange={handleChange}
+          />
+        &lt;/FormGroup>
+        &lt;FormGroup>
+          &lt;Label>Telefon&lt;/Label>
+          &lt;Input
+            name='phone_number'
+            pattern='[0-9]{8}'
+            type='tel'
+            defaultValue={phone_number}
+            onChange={handleChange}
+          />
+        &lt;/FormGroup>
+        &lt;FormGroup>
+          &lt;Label>Passord&lt;/Label>
+          &lt;Input
+            pattern='.{5,}'
+            name='password'
+            type='password'
+            onChange={handleChange}
+            defaultValue={password}
+          />
+        &lt;/FormGroup>
+        &lt;FormGroup>
+          &lt;Label>Tilgangsnivå&lt;/Label>
+          &lt;Input
+            type='select'
+            onChange={handleChange}
+            value={user_level}
+            name='user_level'
+          >
+            &lt;option value='Bruker'>Bruker&lt;/option>
+            &lt;option value='Admin'>Admin&lt;/option>
+          &lt;/Input>
+        &lt;/FormGroup>
+        &lt;Button size='sm' type='submit' color='primary'>
+          Lagre
+        &lt;/Button>{' '}
+        &lt;BackButton />
+      &lt;/Form>
+      &lt;br />
+      &lt;Alert result={result} />
+    &lt;/Container>
+  );
+};
+export default EditUser;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddRemove.html">AddRemove</a></li><li><a href="BackButton.html">BackButton</a></li><li><a href="ChangePassword.html">ChangePassword</a></li><li><a href="DetectedImage.html">DetectedImage</a></li><li><a href="Edit.html">Edit</a></li><li><a href="EditItem.html">EditItem</a></li><li><a href="EditItemType.html">EditItemType</a></li><li><a href="EditProject.html">EditProject</a></li><li><a href="EditUser.html">EditUser</a></li><li><a href="Home.html">Home</a></li><li><a href="ImageUpload.html">ImageUpload</a></li><li><a href="InputDetections.html">InputDetections</a></li><li><a href="ItemList.html">ItemList</a></li><li><a href="ItemTypeList.html">ItemTypeList</a></li><li><a href="ItemTypesDropdown.html">ItemTypesDropdown</a></li><li><a href="List.html">List</a></li><li><a href="Loading.html">Loading</a></li><li><a href="Login.html">Login</a></li><li><a href="LoginForm.html">LoginForm</a></li><li><a href="ModalComponent.html">ModalComponent</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProjectList.html">ProjectList</a></li><li><a href="Register.html">Register</a></li><li><a href="RegisterItem.html">RegisterItem</a></li><li><a href="RegisterItemType.html">RegisterItemType</a></li><li><a href="RegisterProject.html">RegisterProject</a></li><li><a href="RegisterUser.html">RegisterUser</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="TransactionList.html">TransactionList</a></li><li><a href="Transactions.html">Transactions</a></li><li><a href="useInput.html">useInput</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserProfile.html">UserProfile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AuthedRouter">AuthedRouter</a></li><li><a href="global.html#chooseEntity">chooseEntity</a></li><li><a href="global.html#getItemTypesName">getItemTypesName</a></li><li><a href="global.html#UnauthRouter">UnauthRouter</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue May 19 2020 19:05:09 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

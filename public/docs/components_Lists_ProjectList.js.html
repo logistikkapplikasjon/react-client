@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Lists/ProjectList.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Lists/ProjectList.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import { Link } from 'react-router-dom';
+import { Button, Col, Row, UncontrolledTooltip } from 'reactstrap';
+import ModalComponent from '../Modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faPencilAlt } from '@fortawesome/free-solid-svg-icons';
+
+/**
+ * Component for showing a list of projects.
+ * @component
+ * @param {props} props props passed from container
+ */
+const ProjectList = (props) => {
+  /**
+   * Destructuring of props from container
+   */
+  const {
+    setProjectToDelete,
+    projectList,
+    handleClose,
+    handleShow,
+    modal,
+    setModal,
+    id,
+    setId,
+  } = props;
+  return (
+    &lt;>
+      &lt;hr />
+      {projectList &amp;&amp;
+        projectList.map(
+          ({
+            project_id,
+            project_name,
+            project_number,
+            project_description,
+          }) => (
+            &lt;div key={project_id}>
+              &lt;Row>
+                &lt;Col>
+                  &lt;h3>{project_name}&lt;/h3>
+                &lt;/Col>
+              &lt;/Row>
+              &lt;Row xs='1' sm='2' md='4'>
+                &lt;Col>Prosjekt nummer: {project_number} &lt;/Col>
+                &lt;Col>Beskrivelse: {project_description} &lt;/Col>
+                &lt;Col>
+                  &lt;Link
+                    to={{
+                      pathname: '/Edit/project/' + project_id,
+                    }}
+                  >
+                    &lt;UncontrolledTooltip placement='left' target='Endre'>
+                      Endre
+                    &lt;/UncontrolledTooltip>
+                    &lt;Button id='Endre' color='info' size='sm'>
+                      &lt;FontAwesomeIcon icon={faPencilAlt} /> Endre
+                    &lt;/Button>
+                  &lt;/Link>{' '}
+                  &lt;UncontrolledTooltip placement='right' target='Slette'>
+                    Slette
+                  &lt;/UncontrolledTooltip>
+                  &lt;Button
+                    id='Slette'
+                    onClick={() => {
+                      setId(project_id);
+                      handleShow();
+                    }}
+                    outline
+                    color='info'
+                    size='sm'
+                  >
+                    &lt;FontAwesomeIcon icon={faTrashAlt} /> Slette
+                  &lt;/Button>
+                &lt;/Col>
+              &lt;/Row>
+              &lt;ModalComponent
+                modal={modal}
+                handleClose={handleClose}
+                deleteFunction={setProjectToDelete}
+                setModal={setModal}
+                id={id}
+              />
+              &lt;hr />
+            &lt;/div>
+          )
+        )}
+    &lt;/>
+  );
+};
+export default ProjectList;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddRemove.html">AddRemove</a></li><li><a href="BackButton.html">BackButton</a></li><li><a href="ChangePassword.html">ChangePassword</a></li><li><a href="DetectedImage.html">DetectedImage</a></li><li><a href="Edit.html">Edit</a></li><li><a href="EditItem.html">EditItem</a></li><li><a href="EditItemType.html">EditItemType</a></li><li><a href="EditProject.html">EditProject</a></li><li><a href="EditUser.html">EditUser</a></li><li><a href="Home.html">Home</a></li><li><a href="ImageUpload.html">ImageUpload</a></li><li><a href="InputDetections.html">InputDetections</a></li><li><a href="ItemList.html">ItemList</a></li><li><a href="ItemTypeList.html">ItemTypeList</a></li><li><a href="ItemTypesDropdown.html">ItemTypesDropdown</a></li><li><a href="List.html">List</a></li><li><a href="Loading.html">Loading</a></li><li><a href="Login.html">Login</a></li><li><a href="LoginForm.html">LoginForm</a></li><li><a href="ModalComponent.html">ModalComponent</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProjectList.html">ProjectList</a></li><li><a href="Register.html">Register</a></li><li><a href="RegisterItem.html">RegisterItem</a></li><li><a href="RegisterItemType.html">RegisterItemType</a></li><li><a href="RegisterProject.html">RegisterProject</a></li><li><a href="RegisterUser.html">RegisterUser</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="TransactionList.html">TransactionList</a></li><li><a href="Transactions.html">Transactions</a></li><li><a href="useInput.html">useInput</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserProfile.html">UserProfile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AuthedRouter">AuthedRouter</a></li><li><a href="global.html#chooseEntity">chooseEntity</a></li><li><a href="global.html#getItemTypesName">getItemTypesName</a></li><li><a href="global.html#UnauthRouter">UnauthRouter</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue May 19 2020 19:05:09 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

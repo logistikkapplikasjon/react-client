@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: containers/List.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: containers/List.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from 'react';
+import UserList from '../components/Lists/UserList';
+import ItemList from '../components/Lists/ItemList';
+import ItemTypeList from '../components/Lists/ItemTypeList';
+import ProjectList from '../components/Lists/ProjectList';
+import chooseEntity from '../functions/chooseEntity';
+import { Button, Container, Row, Col } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import Loading from '../components/Loading';
+import apiCall from '../functions/apiCall';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import Alert from '../components/Alert';
+import getItemTypesName from '../functions/getItemTypesName';
+
+/**
+ * Container for viewing a list of entities
+ * Fetching entity name from props.match.params and chooses which list to show.
+ * Uses hooks to fetch data
+ * @component
+ */
+
+const List = (props) => {
+  const { type } = props.match.params;
+  const [entity, setEntity] = useState('');
+  const [objectList, setObjectList] = useState();
+  const [loading, setLoading] = useState(true);
+  const [modal, setModal] = useState(false);
+  const [id, setId] = useState('');
+  const handleClose = () => setModal(false);
+  const handleShow = () => setModal(true);
+  const [result, setResult] = useState();
+  const [user_id, setUser_id] = useState();
+  const [typename, setTypeName] = useState();
+
+  useEffect(() => {
+    /**
+     * Stores the submitted entity in state.
+     */
+    setEntity(chooseEntity(type));
+  }, [type]);
+
+  useEffect(() => {
+    /**
+     * fetches the current users information and sets the user_id in state
+     */
+    const getId = async () => {
+      try {
+        const response = await apiCall('me', 'GET');
+        setUser_id(response.result.user_id);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getId();
+  }, []);
+
+  useEffect(() => {
+    /**
+     * Asynchronous fetch function for getting the name of itemtypes when the container is loaded
+     */
+    const populateItemTypes = async () => {
+      const types = await getItemTypesName();
+      setTypeName(types.result);
+    };
+    populateItemTypes();
+  }, []);
+
+  useEffect(() => {
+    /**
+     * Asynchronous fetch function for sending a GET-request to fetch entities and storing them to the object list in state
+     * Dependancy to the entity state and will run if this is changed.
+     */
+    const getContent = async () => {
+      try {
+        setLoading(true);
+        const response = await apiCall(entity, 'GET');
+        setObjectList(response.result);
+        setLoading(false);
+      } catch (error) {
+        setLoading(false);
+        console.log(error);
+      }
+    };
+    getContent();
+  }, [entity]);
+
+  /**
+   * Asynchronous delete function that takes in an entity id and submits a DELETE-request to the API.
+   * @param {number} entityToDelete id of entity
+   */
+  const deleteEntity = async (entityToDelete) => {
+    try {
+      const response = await apiCall(entity + '/' + entityToDelete, 'DELETE');
+      if (response.result) {
+        const newList = objectList.filter(
+          (ent) => ent[type + '_id'] !== entityToDelete
+        );
+        setObjectList(newList);
+      }
+      setResult(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    &lt;Container>
+      &lt;br />
+      &lt;Row>
+        &lt;Alert result={result} />
+      &lt;/Row>
+      &lt;br />
+      {loading ? (
+        &lt;Loading />
+      ) : (
+        (entity === 'users' &amp;&amp; (
+          &lt;>
+            &lt;Col>
+              &lt;Row>
+                &lt;Link to='/register/user'>
+                  &lt;Button color='primary' size='sm'>
+                    &lt;FontAwesomeIcon icon={faPlus} /> Ny bruker
+                  &lt;/Button>
+                &lt;/Link>
+              &lt;/Row>
+            &lt;/Col>
+            &lt;br />
+            &lt;h2>Oversikt over brukere&lt;/h2>
+            &lt;UserList
+              setUserToDelete={deleteEntity}
+              userList={objectList}
+              user_id={user_id}
+              setId={setId}
+              id={id}
+              handleClose={handleClose}
+              handleShow={handleShow}
+              modal={modal}
+              setModal={setModal}
+            />
+          &lt;/>
+        )) ||
+        (entity === 'items' &amp;&amp; (
+          &lt;>
+            &lt;Col>
+              &lt;Row>
+                &lt;Link to='/register/item'>
+                  &lt;Button color='primary' size='sm'>
+                    &lt;FontAwesomeIcon icon={faPlus} /> Ny vare
+                  &lt;/Button>
+                &lt;/Link>
+              &lt;/Row>
+            &lt;/Col>
+            &lt;br />
+            &lt;h2>Oversikt over varer&lt;/h2>
+
+            &lt;ItemList
+              setItemToDelete={deleteEntity}
+              itemList={objectList}
+              setId={setId}
+              id={id}
+              handleClose={handleClose}
+              handleShow={handleShow}
+              modal={modal}
+              setModal={setModal}
+              typename={typename}
+            />
+          &lt;/>
+        )) ||
+        (entity === 'itemtypes' &amp;&amp; (
+          &lt;>
+            &lt;Col>
+              &lt;Row>
+                &lt;Link to='/register/item_type'>
+                  &lt;Button color='primary' size='sm'>
+                    &lt;FontAwesomeIcon icon={faPlus} /> Ny varetype
+                  &lt;/Button>
+                &lt;/Link>
+              &lt;/Row>
+            &lt;/Col>
+            &lt;br />
+            &lt;h2> Oversikt over varetyper&lt;/h2>
+            &lt;ItemTypeList
+              setItemTypeToDelete={deleteEntity}
+              itemTypeList={objectList}
+              setId={setId}
+              id={id}
+              handleClose={handleClose}
+              handleShow={handleShow}
+              modal={modal}
+              setModal={setModal}
+            />
+          &lt;/>
+        )) ||
+        (entity === 'projects' &amp;&amp; (
+          &lt;>
+            &lt;Col>
+              &lt;Row>
+                &lt;Link to='/register/project'>
+                  &lt;Button color='primary' size='sm'>
+                    &lt;FontAwesomeIcon icon={faPlus} /> Nytt prosjekt
+                  &lt;/Button>
+                &lt;/Link>
+              &lt;/Row>
+            &lt;/Col>
+            &lt;br />
+            &lt;h2>Oversikt over prosjekter&lt;/h2>
+            &lt;ProjectList
+              setProjectToDelete={deleteEntity}
+              projectList={objectList}
+              setId={setId}
+              id={id}
+              handleClose={handleClose}
+              handleShow={handleShow}
+              modal={modal}
+              setModal={setModal}
+            />
+          &lt;/>
+        ))
+      )}
+    &lt;/Container>
+  );
+};
+
+export default List;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="AddRemove.html">AddRemove</a></li><li><a href="BackButton.html">BackButton</a></li><li><a href="ChangePassword.html">ChangePassword</a></li><li><a href="DetectedImage.html">DetectedImage</a></li><li><a href="Edit.html">Edit</a></li><li><a href="EditItem.html">EditItem</a></li><li><a href="EditItemType.html">EditItemType</a></li><li><a href="EditProject.html">EditProject</a></li><li><a href="EditUser.html">EditUser</a></li><li><a href="Home.html">Home</a></li><li><a href="ImageUpload.html">ImageUpload</a></li><li><a href="InputDetections.html">InputDetections</a></li><li><a href="ItemList.html">ItemList</a></li><li><a href="ItemTypeList.html">ItemTypeList</a></li><li><a href="ItemTypesDropdown.html">ItemTypesDropdown</a></li><li><a href="List.html">List</a></li><li><a href="Loading.html">Loading</a></li><li><a href="Login.html">Login</a></li><li><a href="LoginForm.html">LoginForm</a></li><li><a href="ModalComponent.html">ModalComponent</a></li><li><a href="NavigationBar.html">NavigationBar</a></li><li><a href="Profile.html">Profile</a></li><li><a href="ProjectList.html">ProjectList</a></li><li><a href="Register.html">Register</a></li><li><a href="RegisterItem.html">RegisterItem</a></li><li><a href="RegisterItemType.html">RegisterItemType</a></li><li><a href="RegisterProject.html">RegisterProject</a></li><li><a href="RegisterUser.html">RegisterUser</a></li><li><a href="SignUp.html">SignUp</a></li><li><a href="TransactionList.html">TransactionList</a></li><li><a href="Transactions.html">Transactions</a></li><li><a href="useInput.html">useInput</a></li><li><a href="UserList.html">UserList</a></li><li><a href="UserProfile.html">UserProfile</a></li></ul><h3>Global</h3><ul><li><a href="global.html#AuthedRouter">AuthedRouter</a></li><li><a href="global.html#chooseEntity">chooseEntity</a></li><li><a href="global.html#getItemTypesName">getItemTypesName</a></li><li><a href="global.html#UnauthRouter">UnauthRouter</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.4</a> on Tue May 19 2020 19:05:09 GMT+0200 (GMT+02:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

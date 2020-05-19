@@ -1,0 +1,62 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/core": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/runtime": "^7.9.6",
+    "@fortawesome/fontawesome-svg-core": "^1.2.28",
+    "@fortawesome/free-brands-svg-icons": "^5.13.0",
+    "@fortawesome/free-regular-svg-icons": "^5.13.0",
+    "@fortawesome/free-solid-svg-icons": "^5.13.0",
+    "@fortawesome/react-fontawesome": "^0.1.9",
+    "@testing-library/react-hooks": "^3.2.1",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "blueimp-load-image": "^5.12.0",
+    "bootstrap": "^4.5.0",
+    "express": "^4.17.1",
+    "express-favicon": "^2.0.1",
+    "jwt-decode": "^2.2.0",
+    "node-fetch": "^2.6.0",
+    "path": "^0.12.7",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.0",
+    "reactstrap": "^8.4.1",
+    "regenerator-runtime": "^0.13.5"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "build": "react-scripts build",
+    "eject": "react-scripts eject",
+    "dev": "react-scripts start",
+    "docs": "jsdoc -c jsdoc.conf.json"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "jest": {
+    "setupFilesAfterEnv": [
+      "<rootDir>/client/setupTests.js"
+    ]
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "better-docs": "^2.0.1",
+    "jsdoc": "^3.6.4"
+  }
+}
