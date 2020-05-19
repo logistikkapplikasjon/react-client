@@ -13,7 +13,7 @@ Legg inn node fra: https://nodejs.org/en/ - applikasjonen er utviklet og testet 
 ### Klon Repo og installer
 
 ```
-git clone https://github.com/arnstadm/react-client.git
+git clone https://github.com/logistikkapplikasjon/react-client.git
 cd react-client
 npm install
 ```
