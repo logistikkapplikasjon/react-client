@@ -240,9 +240,9 @@ const AddRemove = (props) => {
               {response.map((res, index) =>
                 res.result ? (
                   <Alert color='success' key={index}>
-                    Transaksjon som inneholder {transactions[index].amount} av '
-                    {transactions[index].name}' fikk status: '{res.message}' og
-                    ble lastet opp til prosjekt: '
+                    Transaksjon som inneholder {transactions[index].amount} av
+                    {transactions[index].name} fikk status: {res.message} og ble
+                    lastet opp til prosjekt:
                     {projects &&
                       projects.find(
                         (project) =>

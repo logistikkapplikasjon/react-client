@@ -17,7 +17,6 @@ const TransactionList = (props) => {
               <Row>
                 <Col>ID: {transaction.transaction_id}</Col>
                 <Col>Dato: {transaction.date.slice(0, 10)}</Col>
-
                 <Col>Vare: {transaction.item_id}</Col>
                 <Col>Antall: {transaction.amount}</Col>
                 <Col>Prosjekt: {transaction.project_id}</Col>
